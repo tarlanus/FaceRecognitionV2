@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.tarlanus.facerecognizerazure"
+    namespace = "com.tarlanus.facerecognitionv2"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.tarlanus.facerecognizerazure"
+        applicationId = "com.tarlanus.facerecognitionv2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -81,4 +81,10 @@ dependencies {
     implementation("androidx.camera:camera-view:${camerax_version}")
     implementation("androidx.camera:camera-mlkit-vision:${camerax_version}")
     implementation("com.google.mlkit:face-detection:16.1.7")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
+
 }
