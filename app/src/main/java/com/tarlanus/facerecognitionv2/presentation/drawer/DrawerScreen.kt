@@ -208,6 +208,7 @@ fun DrawerScreen(viewModelDrawer: ViewModelDrawer = hiltViewModel()) {
                             imageVector = Icons.Default.Menu,
                             modifier = Modifier.clickable {
                                 scope.launch {
+                                    delay(65)
                                     drawerState.open()
                                 }
                             }
@@ -237,14 +238,14 @@ fun DrawerScreen(viewModelDrawer: ViewModelDrawer = hiltViewModel()) {
             Log.e("drawerValues", "currentOffset ${drawerState.currentOffset}")
             Log.e("drawerValues", "targetValue ${drawerState.targetValue}")
 
-            val fraction = (abs(drawerState.currentOffset) / 525f).coerceIn(0f, 1f)
-            val setAlpha = (1f - fraction) * 0.5f
 
-            if (abs(drawerState.currentOffset) < 525) {
+
+
+            if (drawerState.isOpen) {
                 Box(
                     Modifier
                         .fillMaxSize()
-                        .background(Color.Gray.copy(alpha = setAlpha))
+                        .background(Color.Gray.copy(alpha = 0.5f))
                         .pointerInput(Unit) {
                             detectTapGestures {
                                 scope.launch { drawerState.close() }
@@ -252,6 +253,8 @@ fun DrawerScreen(viewModelDrawer: ViewModelDrawer = hiltViewModel()) {
                         }
                 )
             }
+
+
 
 
 

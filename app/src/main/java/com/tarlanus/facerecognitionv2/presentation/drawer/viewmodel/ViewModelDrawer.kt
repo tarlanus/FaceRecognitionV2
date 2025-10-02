@@ -43,16 +43,12 @@ class ViewModelDrawer @Inject constructor(private val useCaseGetAllRegisteredUse
 
                     is Result.ERROR -> {
                         _showToast.emit(result.error ?: "")
-
                     }
                     is Result.SUCCESS -> {
                         val data = result.success
                         if (data != null) {
                             controllerUserDetails.clear()
-
-
                             controllerUserDetails.addAll(data.toListUserDetails())
-
                             _registeredUsers.value = controllerUserDetails.toList()
                             Log.e("getResultUsers", _registeredUsers.value.toString())
 

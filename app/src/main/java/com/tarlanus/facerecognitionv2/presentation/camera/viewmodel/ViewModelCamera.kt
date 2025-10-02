@@ -99,7 +99,7 @@ class ViewModelCamera @Inject constructor(
                     imageCapture
 
                 )
-                camera?.cameraControl?.setZoomRatio(1.5f)
+                camera?.cameraControl?.setZoomRatio(1.1f)
             } catch (e: Exception) {
                 Log.e("onErrorWhileSetup", e.message.toString())
 

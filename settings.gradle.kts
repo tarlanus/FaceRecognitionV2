@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FaceRecognizerAzue"
+rootProject.name = "FaceRecognitionV2"
 include(":app")

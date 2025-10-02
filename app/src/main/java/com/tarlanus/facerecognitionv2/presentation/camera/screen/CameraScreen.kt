@@ -101,7 +101,7 @@ fun CameraScreen(viewModelCamera : ViewModelCamera? = hiltViewModel(), onClose: 
                 .weight(1f)) {
                 Text(
                     textAlign = TextAlign.Center,
-                    text = "asdasdasd",
+                    text = "",
                     color = Color.Black,
                     fontSize = 18.sp
                 )

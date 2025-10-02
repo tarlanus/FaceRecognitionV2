@@ -1,6 +1,8 @@
 package com.tarlanus.facerecognitionv2
 
 import com.tarlanus.facerecognitionv2.data.local.UserFaces
+import com.tarlanus.facerecognitionv2.data.remote.VerifyResponse
+import com.tarlanus.facerecognitionv2.domain.models.ComparisonDetails
 import com.tarlanus.facerecognitionv2.domain.models.UserDetails
 
 fun List<UserFaces>.toListUserDetails(): List<UserDetails> {
@@ -12,4 +14,8 @@ fun List<UserFaces>.toListUserDetails(): List<UserDetails> {
 fun UserFaces.toUserDetail(): UserDetails {
 
     return UserDetails(candidateName = this.candidateName, imagePath = this.imagePath, id = this.id)
+}
+fun VerifyResponse.tocomparison(): ComparisonDetails {
+
+    return ComparisonDetails(verified = this.verified, distance = this.distance)
 }

@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.tarlanus.facerecognitionv2.domain.common.UseCaseUritoImage
 import com.tarlanus.facerecognitionv2.utils.Constants.keyManifestMedia33
-import com.tarlanus.facerecognitionv2.utils.Constants.keyManifestMedia34
 import com.tarlanus.facerecognitionv2.utils.Constants.keyManifestReadExternal
 import com.tarlanus.facerecognitionv2.utils.Constants.keyManifestWriteExternal
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,56 +24,43 @@ class ViewModelGallery @Inject constructor(@ApplicationContext private val conte
 
 
 
-    fun checkCameraPermission(): Boolean {
+    fun checkGallery(): Boolean {
         val buildVersion = Build.VERSION.SDK_INT
-        val permissionGallery = when {
-            buildVersion >= 34 -> {
-                keyManifestMedia34
+        return when {
+            buildVersion >= 33 -> {
+                ContextCompat.checkSelfPermission(
+                    context,
+                    keyManifestMedia33
+                ) == PackageManager.PERMISSION_GRANTED
             }
+            buildVersion > 28 -> {
+                ContextCompat.checkSelfPermission(
+                    context,
+                    keyManifestReadExternal
+                ) == PackageManager.PERMISSION_GRANTED
+            }
+            else -> {
+                ContextCompat.checkSelfPermission(
+                    context,
+                    keyManifestWriteExternal
+                ) == PackageManager.PERMISSION_GRANTED
+            }
+        }
+    }
 
-            buildVersion == 33 -> {
+    fun getPermission(): String {
+        val buildVersion = Build.VERSION.SDK_INT
+        return when {
+            buildVersion >= 33 -> {
                 keyManifestMedia33
             }
-
-            buildVersion < 33 && buildVersion > 28 -> {
+            buildVersion > 28 -> {
                 keyManifestReadExternal
             }
-
             else -> {
                 keyManifestWriteExternal
             }
         }
-        val checkPermission = ContextCompat.checkSelfPermission(
-            context,
-            permissionGallery
-        ) == PackageManager.PERMISSION_GRANTED
-        return checkPermission
-
-
-
-
-}
-    fun getPermission() : String {
-        val buildVersion = Build.VERSION.SDK_INT
-
-        val permissionGallery = when {
-            buildVersion >= 34 -> {
-                keyManifestMedia34
-            }
-
-            buildVersion == 33 -> {
-                keyManifestMedia33
-            }
-
-            buildVersion < 33 && buildVersion > 28 -> {
-                keyManifestReadExternal
-            }
-
-            else -> {
-                keyManifestWriteExternal
-            }
-        }
-        return permissionGallery
     }
 
     fun setUriLikePath(getUri: Uri)  : String?{

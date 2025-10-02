@@ -46,7 +46,7 @@ fun GalleryScreen(viewModelGallery: ViewModelGallery = hiltViewModel(), onClose 
     }
     LaunchedEffect(Unit) {
 
-        val isGalleryGranted = viewModelGallery.checkCameraPermission()
+        val isGalleryGranted = viewModelGallery.checkGallery()
         if (!isGalleryGranted) {
             permLauncherGallery.launch(viewModelGallery.getPermission())
         }
